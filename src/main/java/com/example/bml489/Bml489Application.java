@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -34,13 +35,23 @@ public class Bml489Application implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
-		Ders d = new Ders();
+		/*Ders d = new Ders();
 		d.setDersAdi("Object Oriented");
 		dersPersistence.save(d);
 
 		Ogretmen ogrt = new Ogretmen();
 		ogrt.setAdSoyad("serdar güler");
+		ogrt.setSicilNo("2247");
 		ogretmenPersistence.save(ogrt);
+
+		Ogretmen update_ogrt = ogretmenPersistence.findById(63).get();
+		update_ogrt.setSicilNo("123");
+		ogretmenPersistence.save(update_ogrt);
+
+
+
+
+
 
 		DersInstance di = new DersInstance();
 		di.setDers(d);
@@ -48,6 +59,7 @@ public class Bml489Application implements CommandLineRunner {
 
 		Ogrenci o = new Ogrenci();
 		o.setAdSoyad("Hatice Yıldız");
+		o.setTckimlikNo("123123");
 
 		ogrenciPersistence.save(o);
 		List<Ogrenci> alanOgrenciler = new ArrayList<>();
@@ -56,6 +68,14 @@ public class Bml489Application implements CommandLineRunner {
 		di.setAlanOgrenciler(alanOgrenciler);
 		dersInstancePersistence.save(di);
 
+		List<Ogretmen> result = ogretmenPersistence.sicileGoreBul("2247");
+		for(
+				Ogretmen r : result
+		){
+			System.out.println(r);
+		}
+
+		 */
 
 	}
 }

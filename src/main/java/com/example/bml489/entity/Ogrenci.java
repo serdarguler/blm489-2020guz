@@ -1,21 +1,18 @@
-package com.example.bml489;
+package com.example.bml489.entity;
 
 import lombok.Data;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.ManyToMany;
+import javax.persistence.*;
 import java.util.List;
 
 @Data
 @Entity
+//@DiscriminatorValue(value="ogrenci")
 public class Ogrenci extends User {
-    @Id
-    @GeneratedValue
-    private Integer id;
+
     private String adSoyad;
     private String tckimlikNo;
+    private String ogrenciNo;
 
     @ManyToMany(mappedBy = "alanOgrenciler")
     private List<DersInstance> aldigiDersler;

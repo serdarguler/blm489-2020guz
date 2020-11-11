@@ -1,8 +1,6 @@
-package com.example.bml489;
+package com.example.bml489.entity;
 
 import lombok.Data;
-
-import java.util.Date;
 
 @Data
 public class Sertifika {

@@ -6,7 +6,7 @@ import javax.persistence.*;
 
 @Data
 @Entity
-//@DiscriminatorValue(value="ogrentmen")
+@DiscriminatorValue(value="ogretmen")
 public class Ogretmen extends User{
 
     private String sicilNo;

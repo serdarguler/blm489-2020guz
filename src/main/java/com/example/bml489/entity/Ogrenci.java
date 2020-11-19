@@ -7,7 +7,7 @@ import java.util.List;
 
 @Data
 @Entity
-//@DiscriminatorValue(value="ogrenci")
+@DiscriminatorValue(value="ogrenci")
 public class Ogrenci extends User {
 
     private String adSoyad;

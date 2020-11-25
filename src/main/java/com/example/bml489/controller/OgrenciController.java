@@ -8,6 +8,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @Controller
 @RequestMapping(value = "/api/ogrenci")
 public class OgrenciController {
@@ -18,6 +20,12 @@ public class OgrenciController {
     public @ResponseBody HttpStatus createOgrenci(@RequestBody Ogrenci ogrenci){
         ogrenciService.createOgrenci(ogrenci);
         return  HttpStatus.OK;
+    }
+
+    @RequestMapping(value = "",method = RequestMethod.GET)
+    public @ResponseBody
+    List<Ogrenci> readAll(){
+        return ogrenciService.readAll();
     }
 
     @RequestMapping(value = "/{id}",method = RequestMethod.GET)

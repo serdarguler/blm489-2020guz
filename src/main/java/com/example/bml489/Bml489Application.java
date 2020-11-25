@@ -1,5 +1,6 @@
 package com.example.bml489;
 
+import com.example.bml489.entity.Ogrenci;
 import com.example.bml489.persistence.DersInstancePersistence;
 import com.example.bml489.persistence.DersPersistence;
 import com.example.bml489.persistence.OgrenciPersistence;
@@ -8,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
@@ -35,6 +37,25 @@ public class Bml489Application implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
+
+		BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
+
+		Ogrenci find = ogrenciPersistence.findByKullaniciAdi("hatice.yildiz");
+		try {
+			if (find == null) {
+				Ogrenci o = new Ogrenci();
+				o.setAdSoyad("Hatice Yıldız");
+				o.setKullaniciAdi("hatice.yildiz");
+				o.setTckimlikNo("123456");
+				o.setOgrenciNo("555");
+				o.setSifre(bCryptPasswordEncoder.encode("hatice123"));
+				ogrenciPersistence.save(o);
+			}
+		}catch (Exception e){
+
+		}
+
+
 		/*Ders d = new Ders();
 		d.setDersAdi("Object Oriented");
 		dersPersistence.save(d);

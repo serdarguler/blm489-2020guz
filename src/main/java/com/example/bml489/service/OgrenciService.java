@@ -6,6 +6,8 @@ import com.example.bml489.persistence.OgrenciPersistence;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class OgrenciService {
 
@@ -29,6 +31,10 @@ public class OgrenciService {
 
     public void deleteOgrenci(int id){
         ogrenciPersistence.deleteById(id);
+    }
+
+    public List<Ogrenci> readAll(){
+        return (List) ogrenciPersistence.findAll();
     }
 
 }

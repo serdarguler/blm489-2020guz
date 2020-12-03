@@ -6,8 +6,10 @@ import javax.persistence.*;
 
 @Data
 @Entity
-@DiscriminatorValue(value="ogretmen")
-public class Ogretmen extends User{
+public class Ogretmen {
+    @Id
+    @GeneratedValue
+    private int id;
 
     private String sicilNo;
 

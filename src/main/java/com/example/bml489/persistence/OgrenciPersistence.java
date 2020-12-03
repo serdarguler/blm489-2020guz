@@ -5,5 +5,4 @@ import org.springframework.data.repository.CrudRepository;
 
 public interface OgrenciPersistence extends CrudRepository<Ogrenci,Integer> {
 
-    public Ogrenci findByKullaniciAdi(String kullaniciAdi);
 }

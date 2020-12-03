@@ -7,8 +7,11 @@ import java.util.List;
 
 @Data
 @Entity
-@DiscriminatorValue(value="ogrenci")
-public class Ogrenci extends User {
+public class Ogrenci {
+
+    @Id
+    @GeneratedValue
+    private int id;
 
     private String adSoyad;
     private String tckimlikNo;

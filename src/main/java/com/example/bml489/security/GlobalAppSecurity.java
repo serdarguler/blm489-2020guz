@@ -3,6 +3,7 @@ package com.example.bml489.security;
 import com.example.bml489.entity.Ogrenci;
 import com.example.bml489.entity.User;
 import com.example.bml489.persistence.OgrenciPersistence;
+import com.example.bml489.persistence.UserPersistence;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -18,14 +19,15 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 public class GlobalAppSecurity extends GlobalAuthenticationConfigurerAdapter {
 
     @Autowired
-    OgrenciPersistence ogrenciPersistence;
+    UserPersistence userPersistence;
+
 
     @Bean
     UserDetailsService userDetailsService() {
         return new UserDetailsService() {
             @Override
             public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-                Ogrenci appUser = ogrenciPersistence.findByKullaniciAdi(username);
+                User appUser = userPersistence.findByUsername(username);
                 return appUser;
             }
         };

@@ -1,10 +1,8 @@
 package com.example.bml489;
 
 import com.example.bml489.entity.Ogrenci;
-import com.example.bml489.persistence.DersInstancePersistence;
-import com.example.bml489.persistence.DersPersistence;
-import com.example.bml489.persistence.OgrenciPersistence;
-import com.example.bml489.persistence.OgretmenPersistence;
+import com.example.bml489.entity.User;
+import com.example.bml489.persistence.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -26,7 +24,7 @@ public class Bml489Application implements CommandLineRunner {
 	private DersInstancePersistence dersInstancePersistence;
 
 	@Autowired
-	private OgrenciPersistence ogrenciPersistence;
+	private UserPersistence userPersistence;
 
 	@Autowired
 	private OgretmenPersistence ogretmenPersistence;
@@ -40,16 +38,14 @@ public class Bml489Application implements CommandLineRunner {
 
 		BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
 
-		Ogrenci find = ogrenciPersistence.findByKullaniciAdi("hatice.yildiz");
+		User find = userPersistence.findByUsername("hatice.yildiz");
 		try {
 			if (find == null) {
-				Ogrenci o = new Ogrenci();
+				User o = new User();
 				o.setAdSoyad("Hatice Yıldız");
-				o.setKullaniciAdi("hatice.yildiz");
-				o.setTckimlikNo("123456");
-				o.setOgrenciNo("555");
-				o.setSifre(bCryptPasswordEncoder.encode("hatice123"));
-				ogrenciPersistence.save(o);
+				o.setUsername("hatice.yildiz");
+				o.setPassword(bCryptPasswordEncoder.encode("hatice123"));
+				userPersistence.save(o);
 			}
 		}catch (Exception e){
 

@@ -7,70 +7,53 @@ import org.springframework.security.core.userdetails.UserDetails;
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 @Data
 @Entity
-@Inheritance(strategy= InheritanceType.SINGLE_TABLE)
-@DiscriminatorColumn(name="type",discriminatorType= DiscriminatorType.STRING)
 @Table(name = "user_table")
 public class User implements UserDetails {
     @Id
     @GeneratedValue
     private int id;
     private String adSoyad;
-    private String kullaniciAdi;
-    private String sifre;
+    private String username;
+    private String password;
     private String profil;
+    @ManyToMany(fetch = FetchType.EAGER)
+    private List<UserRole> roles;
 
     @Override
     @Transient
-    public Collection<? extends GrantedAuthority> getAuthorities() {
-
-        GrantedAuthority ga = new GrantedAuthority() {
-            @Override
-            public String getAuthority() {
-                return "ROLE_USER";
-            }
-        };
-
-        Collection<GrantedAuthority> gac = new ArrayList<>();
-        gac.add(ga);
-        return gac;
+    public Collection<UserRole> getAuthorities() {
+        List<UserRole> userRoles = this.getRoles();
+        return userRoles;
     }
 
-    @Override
-    @Transient
-    public String getPassword() {
-        return this.sifre;
-    }
-
-    @Override
-    @Transient
-    public String getUsername() {
-        return this.kullaniciAdi;
-    }
 
     @Override
     @Transient
     public boolean isAccountNonExpired() {
-        return false;
+        return true;
     }
 
     @Override
     @Transient
     public boolean isAccountNonLocked() {
-        return false;
+        return true;
     }
 
     @Override
     @Transient
     public boolean isCredentialsNonExpired() {
-        return false;
+        return true;
     }
 
     @Override
     @Transient
     public boolean isEnabled() {
-        return false;
+        return true;
     }
+
+
 }
